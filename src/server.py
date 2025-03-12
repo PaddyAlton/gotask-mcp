@@ -33,7 +33,7 @@ for task_name, task_desc in all_tasks.items():
                 check=False,
             )
             if result.returncode != 0:
-                return result.stderr
+                return result.stderr + result.stdout
             return result.stdout
 
         # Set the docstring to the task description
