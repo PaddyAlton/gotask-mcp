@@ -1,0 +1,47 @@
+version: '3'
+
+tasks:
+
+    format:
+        cmds:
+            - uv run ruff format src tests
+        desc: Auto-format .py files in src/
+
+    format-check:
+        cmds:
+            - uv run ruff format src tests --check
+        desc: Check that autoformatting is not required for .py files in src/
+
+    lint:
+        cmds:
+            - uv run ruff check src tests --fix
+        desc: Attempt to auto-fix .py files in src/ that fail linting
+
+    lint-check:
+        cmds:
+            - uv run ruff check src tests
+        desc: Lint .py files in src/
+
+    test:
+        cmds:
+            - uv run pytest
+        desc: Run the unit tests via Pytest
+
+    type-check:
+        cmds:
+            - uv run mypy src
+        desc: Run the Mypy static type checker against src/
+
+    fix:
+        cmds:
+            - task: format
+            - task: lint
+        desc: Auto-fix issues where possible
+
+    check:
+        cmds:
+            - task: format-check
+            - task: lint-check
+            - task: type-check
+            - task: test
+        desc: Run all automated checks
