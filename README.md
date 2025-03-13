@@ -12,9 +12,10 @@ You will also need to have `Taskfile` installed. `brew install go-task` will wor
 
 ## Quickstart for Cursor IDE
 
-0. ensure you have the prerequisites installed and a suitable `Taskfile.yml` in your working project
+0. ensure you have the prerequisites installed
 1. clone down this repository
-2. in Cursor settings > MCP Servers, start a server with the following command
+2. ensure you have a suitable `Taskfile.yml` in your working project (you can use the example in this project for inspiration)
+3. in Cursor settings > MCP Servers, start a server with the following command:
 
 `uv run --with mcp --directory /path/to/gotask-mcp mcp run /path/to/gotask-mcp/src/server.py`
 
