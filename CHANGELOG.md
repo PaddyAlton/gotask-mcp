@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+Greatly simplified implementation, tested with Cursor IDE.
+
 ## [0.0.1] - 2025-03-12
 
 Demo version complete.
