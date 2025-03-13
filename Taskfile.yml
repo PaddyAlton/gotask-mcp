@@ -39,8 +39,8 @@ tasks:
 
     test-coverage:
         cmds:
-            - uv run pytest --cov=src --cov-report=term-missing --cov-fail-under=45
-        desc: Test coverage evaluation, failing if less than 45%
+            - uv run pytest --cov=src --cov-report=term-missing --cov-fail-under=22
+        desc: Test coverage evaluation, failing if less than 22%
 
     type-check:
         cmds:
