@@ -12,7 +12,6 @@ from src.utils import load_taskfile
 # Create a named server
 server = FastMCP("gotask", log_level="WARNING")
 
-# import tasks from Taskfile.yml
 all_tasks = load_taskfile()
 
 # some 'metaprogramming' here: we dynamically create a tool for each task.
@@ -42,7 +41,6 @@ for task_name, task_desc in all_tasks.items():
 
     # Register the task runner as a tool
     server.tool(name=task_name)(make_task_runner(task_name, task_desc))
-
 
 if __name__ == "__main__":
     server.run(transport="stdio")

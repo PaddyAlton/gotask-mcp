@@ -1,9 +1,29 @@
 # src/utils.py
 """Utility functions for the MCP server"""
 
+from os import chdir
 from pathlib import Path
 
 from saneyaml import load as yaml_load
+
+
+# context manager for changing the working directory
+class ChangeDir:
+    """Context manager for changing the working directory"""
+
+    def __init__(self, path: Path):
+        """Initialize the context manager"""
+        self.path = path
+        self.original_path = None
+
+    def __enter__(self):
+        """Enter the context manager"""
+        self.original_path = Path.cwd()
+        chdir(self.path)
+
+    def __exit__(self, exc_type, exc_val, exc_tb):  # noqa: ANN001
+        """Exit the context manager"""
+        chdir(self.original_path)
 
 
 def load_taskfile() -> dict:
