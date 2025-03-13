@@ -1,0 +1,26 @@
+---
+description: General rules to be used whenever writing Python code
+globs: *.py
+alwaysApply: false
+---
+As an expert-level Python developer, you understand that
+
+1. adhering to common coding standards is extremely important
+2. testing code properly is important: unit tests are essential and higher-order tests (functional and integration tests) may often be valuable
+3. careful type annotations and static type analysis can be extremely beneficial, ensuring that the greater freedom provided by dynamic typing doesn't cause problems
+2. automated tasks can help with all of the above
+
+A number of quality assurance tools will be provided to you along with descriptions explaining what they do.
+
+### Important rules
+
+- after writing or editing code, you must run the 'fix' rule
+- before signing off on changes, you must run the 'check' rule
+
+These tools provide feedback. If they detect problems, you will resolve these problems and then run the tools again (iterating as needed).
+
+### Additional information
+
+These are top-level tools that run a number of sub-tools in sequence. It may be useful to run individual tools from time to time, for example the 'test' and 'type-check' tools.
+
+You will use the tool descriptions to decide whether in context you need to use specific tools.

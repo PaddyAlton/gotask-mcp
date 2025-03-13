@@ -22,10 +22,25 @@ tasks:
             - uv run ruff check src tests
         desc: Lint .py files in src/
 
+    sql-fix:
+        cmds:
+            - uv run sqlfluff fix src/sql
+        desc: Fix .sql files in src/sql/ with SQLFluff
+
+    sql-check:
+        cmds:
+            - uv run sqlfluff lint src/sql
+        desc: Lint .sql files in src/sql/ with SQLFluff
+
     test:
         cmds:
             - uv run pytest
         desc: Run the unit tests via Pytest
+
+    test-coverage:
+        cmds:
+            - uv run pytest --cov=src --cov-report=term-missing --cov-fail-under=45
+        desc: Test coverage evaluation, failing if less than 45%
 
     type-check:
         cmds:
@@ -36,12 +51,15 @@ tasks:
         cmds:
             - task: format
             - task: lint
+            - task: sql-fix
         desc: Auto-fix issues where possible
 
     check:
         cmds:
             - task: format-check
             - task: lint-check
-            - task: type-check
+            - task: sql-check
             - task: test
+            - task: test-coverage
+            - task: type-check
         desc: Run all automated checks

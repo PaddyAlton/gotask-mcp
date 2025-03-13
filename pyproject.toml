@@ -21,11 +21,13 @@ gotask-mcp = "src.server:server.run"
 
 [dependency-groups]
 dev = [
-    "mypy>=1.14.1",
-    "pytest>=8.3.4",
+    "mypy>=1.15.0",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.0.0",
     "pytest-mock>=3.14.0",
     "pytest-watcher>=0.4.3",
-    "ruff>=0.9.2",
+    "ruff>=0.9.10",
+    "sqlfluff>=3.3.1",
 ]
 explore = [
     "jupyter>=1.1.1",
@@ -61,6 +63,7 @@ ignore = [
     "D212",    # We prefer (an aesthetic/readability choice) function summaries below triple quotes, not alongside
     "D400",    # We accept missing trailing full-stops at the end of one-liner function summaries
     "D415",    # We accept missing trailing punctuation at the end of one-liner function summaries
+    "FIX002",  # We don't flag TODOs with ruff
     "RET504",  # We often want an 'unnecessary' assignment, as a return variable having a name can be clearer
     "SIM103",  # We accept 'unnecessary' boolean checks on the grounds that they can improve readability
 ]
