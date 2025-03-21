@@ -3,6 +3,7 @@
 
 import subprocess
 
+from contextlib import contextmanager
 from json import dumps
 from os import chdir
 from pathlib import Path
@@ -11,22 +12,15 @@ from mcp.server.fastmcp import FastMCP
 
 
 # context manager for changing the working directory
-class ChangeDir:
+@contextmanager
+def working_dir(path: Path):
     """Context manager for changing the working directory"""
-
-    def __init__(self, path: Path):
-        """Initialize the context manager"""
-        self.path = path
-        self.original_path = None
-
-    def __enter__(self):
-        """Enter the context manager"""
-        self.original_path = Path.cwd()
-        chdir(self.path)
-
-    def __exit__(self, exc_type, exc_val, exc_tb):  # noqa: ANN001
-        """Exit the context manager"""
-        chdir(self.original_path)
+    original_path = Path.cwd()
+    chdir(path)
+    try:
+        yield
+    finally:
+        chdir(original_path)
 
 
 # Create a named server
@@ -48,7 +42,7 @@ def task_list(current_project: str) -> str:
         A string containing the list of tasks
 
     """
-    with ChangeDir(Path(current_project)):
+    with working_dir(Path(current_project)):
         result = subprocess.run(  # noqa: S603
             ["task", "--list"],  # noqa: S607
             capture_output=True,
@@ -82,7 +76,7 @@ def run_task(current_project: str, task_name: str) -> str:
         STDOUT/STDERR output from the task
 
     """
-    with ChangeDir(Path(current_project)):
+    with working_dir(Path(current_project)):
         result = subprocess.run(  # noqa: S603
             ["task", task_name],  # noqa: S607
             capture_output=True,
