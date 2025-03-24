@@ -8,7 +8,7 @@ This project and the `mcp` CLI rely on your having the dependency management too
 allation).
 
 You will also need to have `Taskfile` installed. `brew install go-task` will work if you are a `Homebrew` user.
-[See here for alternatives](https://taskfile.dev/installation/).
+[See here for alternatives](https://taskfile.dev/installation).
 
 ## Quickstart for Cursor IDE
 
